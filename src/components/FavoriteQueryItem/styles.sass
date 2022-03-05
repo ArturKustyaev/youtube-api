@@ -1,0 +1,35 @@
+.favorites-query-item
+    background-color: #FFFFFF
+    cursor: pointer
+    display: flex
+    font-size: 16px
+    font-weight: 500
+    justify-content: space-between
+    line-height: 20px
+    padding: 13px 20px
+    transition: background-color 0.2s ease-out
+
+    &__actions
+        opacity: 0
+        transition: opacity 0.2s ease-out
+
+    &__button
+        border: none
+        background-color: transparent
+        color: #1390E5
+        cursor: pointer
+
+        &:hover
+            color: lighten(#1390E5, 10%)
+
+        &--danger
+            color: #FE0F0F
+
+            &:hover
+                color: lighten(#FE0F0F, 20%)
+
+    &:hover
+        background-color: #F1F1F1
+
+    &:hover &__actions
+        opacity: 1
