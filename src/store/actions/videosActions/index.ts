@@ -1,24 +1,24 @@
 import { IFetchSearchedVideosResponse } from './interfaces'
 import { IVideo } from '../../../components/Video/index'
-import { ActionType, ActionCreatorsType } from './types'
+import { ActionType, ActionCreatorType } from './types'
 import { api } from '../../../apis/api'
 import { Dispatch } from 'redux'
 
-const fetchSearchedVideosStart = (): ActionCreatorsType => ({
+const fetchSearchedVideosStart = (): ActionCreatorType => ({
 	type: ActionType.FETCH_SEARCHED_VIDEOS_START
 })
 
-const fetchSearchedVideosSuccess = (data: IFetchSearchedVideosResponse): ActionCreatorsType => ({
+const fetchSearchedVideosSuccess = (data: IFetchSearchedVideosResponse): ActionCreatorType => ({
 	type: ActionType.FETCH_SEARCHED_VIDEOS_SUCCESS,
 	payload: data
 })
 
-const fetchSearchedVideosError = (error: string): ActionCreatorsType => ({
+const fetchSearchedVideosError = (error: string): ActionCreatorType => ({
 	type: ActionType.FETCH_SEARCHED_VIDEOS_ERROR,
 	payload: error
 })
 
-export const fetchSearchedVideos = (q: string) => (dispatch: Dispatch<ActionCreatorsType>) => {
+export const fetchSearchedVideos = (q: string) => (dispatch: Dispatch<ActionCreatorType>) => {
 	dispatch(fetchSearchedVideosStart())
 
 	api
@@ -64,16 +64,16 @@ export const fetchSearchedVideos = (q: string) => (dispatch: Dispatch<ActionCrea
 	})
 }*/
 
-const getVideoViewCountStart = (): ActionCreatorsType => ({
+const getVideoViewCountStart = (): ActionCreatorType => ({
 	type: ActionType.GET_VIDEO_VIEW_COUNT_START
 })
 
-const getVideoViewCountSuccess = (viewCount: number): ActionCreatorsType => ({
+const getVideoViewCountSuccess = (viewCount: number): ActionCreatorType => ({
 	type: ActionType.GET_VIDEO_VIEW_COUNT_SUCCESS,
 	payload: viewCount
 })
 
-export const setSearchQuery = (query: string): ActionCreatorsType => ({
+export const setSearchQuery = (query: string): ActionCreatorType => ({
 	type: ActionType.SET_SEARCH_QUERY,
 	payload: query
 })

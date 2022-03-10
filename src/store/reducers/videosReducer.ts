@@ -1,5 +1,5 @@
 import { IPageInfo } from './../actions/videosActions/interfaces'
-import { ActionCreatorsType, ActionType } from './../actions/videosActions/types'
+import { ActionCreatorType, ActionType } from './../actions/videosActions/types'
 
 import { IVideo } from './../../components/Video/index'
 
@@ -21,7 +21,7 @@ const initialState: IInitialState = {
 	maxResults: 12
 }
 
-const videosReducer = (state = initialState, action: ActionCreatorsType): IInitialState => {
+const videosReducer = (state = initialState, action: ActionCreatorType): IInitialState => {
 	switch (action.type) {
 		case ActionType.FETCH_SEARCHED_VIDEOS_START: {
 			return {

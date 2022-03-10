@@ -1,11 +1,13 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addFavoriteQuery, DeleteFavoriteQuery } from '../../store/actions/userActions'
-import { fetchSearchedVideos, setSearchQuery } from '../../store/actions/videosActions'
-import { AppStateType } from '../../store/reducers'
-import { IFavoriteQueryItemProps } from '../FavoriteQueryItem'
-import Button from '../UI/Button'
-import Input from '../UI/Input'
+import { hideModal, openModal } from '../../../store/actions/modalActions'
+import { clearSelectedQuery } from '../../../store/actions/userActions'
+import { fetchSearchedVideos, setSearchQuery } from '../../../store/actions/videosActions'
+import { AppStateType } from '../../../store/reducers'
+import FavoriteQueryForm, { FavoriteQueryFormType } from '../FavoriteQueryForm'
+import Modal from '../../UI/Modal'
+import Button from '../../UI/Button'
+import Input from '../../UI/Input'
 import './styles.sass'
 
 const FindForm: FC = () => {
@@ -24,23 +26,30 @@ const FindForm: FC = () => {
 		setValue(value)
 
 		favoriteQueries.some(query => {
-			if (query.title === value.trim()) {
+			if (query.query === value.trim()) {
 				setIsFavorite(true)
 			}
 		})
 	}
 
 	const checkedHandler = () => {
-		setIsFavorite(!isFavorite)
+		dispatch(openModal())
+
+		/*setIsFavorite(!isFavorite)
 
 		if (!isFavorite) {
-			const newFavoriteQuery: IFavoriteQueryItemProps = {
-				title: value
+			const newFavoriteQuery: IFavoriteQueryItem = {
+				id: Date.now(),
+				query: value,
+				title: value,
+				order: 'title',
+				maxResults: 20
 			}
+
 			dispatch(addFavoriteQuery(newFavoriteQuery))
 		} else {
-			dispatch(DeleteFavoriteQuery(value))
-		}
+			dispatch(deleteFavoriteQuery(value))
+		}*/
 	}
 
 	const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -51,6 +60,9 @@ const FindForm: FC = () => {
 
 	return (
 		<form className='find-form' onSubmit={submitHandler}>
+			<h2 className={`find-form__title ${videos.length ? 'find-form__title--extend' : ''}`}>
+				Поиск видео
+			</h2>
 			<div className='find-form__inner'>
 				<div className={`input-wrapper ${videos.length ? 'input-wrapper--extend' : ''}`}>
 					<Input
@@ -59,6 +71,7 @@ const FindForm: FC = () => {
 						type='text'
 						value={value}
 						onChange={changeHandler}
+						placeholder='Что хотите посмотреть?'
 					/>
 
 					{videos.length ? (
@@ -71,7 +84,6 @@ const FindForm: FC = () => {
 						/>
 					) : null}
 				</div>
-
 				<Button disabled={value.length === 0} className='find-form__button' type='submit'>
 					Найти
 				</Button>

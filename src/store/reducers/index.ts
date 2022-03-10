@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
+import modalReducer from './modalReducer'
 import userReducer from './userReducer'
 import videosReducer from './videosReducer'
 
 const rootReducer = combineReducers({
 	videos: videosReducer,
-	user: userReducer
+	user: userReducer,
+	modal: modalReducer
 })
 
-type RootReducerType = typeof rootReducer
-
-export type AppStateType = ReturnType<RootReducerType>
+export type AppStateType = ReturnType<typeof rootReducer>
 
 export default rootReducer

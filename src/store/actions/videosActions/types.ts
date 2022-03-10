@@ -18,7 +18,7 @@ export enum ActionType {
 	GET_VIDEO_VIEW_COUNT_SUCCESS = 'GET_VIDEO_VIEW_COUNT_SUCCESS'
 }
 
-export type ActionCreatorsType =
+export type ActionCreatorType =
 	| IFetchSearchedVideosStart
 	| IFetchSearchedVideosSuccess
 	| IFetchSearchedVideosError

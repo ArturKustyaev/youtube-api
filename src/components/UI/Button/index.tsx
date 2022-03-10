@@ -1,8 +1,14 @@
-import { ButtonHTMLAttributes, FC } from 'react'
+import { ButtonHTMLAttributes, FC, memo } from 'react'
 import './styles.sass'
 
-const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest }) => {
-	const classes = `ui-button ${rest.className ? rest.className : ''}`
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+	variant?: string
+}
+
+const Button: FC<IButtonProps> = ({ children, variant = 'standart', ...rest }) => {
+	const classes = `ui-button ${variant === 'outlined' ? 'ui-button--outlined' : ''} ${
+		rest.className ? rest.className : ''
+	}`
 
 	return (
 		<button {...rest} className={classes} type='submit'>
@@ -11,4 +17,4 @@ const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest
 	)
 }
 
-export default Button
+export default memo(Button)

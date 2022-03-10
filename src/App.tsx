@@ -1,9 +1,8 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.sass'
-import LoginPage from './pages/LoginPage'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import FavoriteQueriesPage from './pages/FavoriteQueriesPage'
+import LoginPage from './pages/LoginPage/LoginPage'
 import MainPage from './pages/MainPage'
-import FindPage from './pages/FindPage'
-import FavoritesPage from './pages/FavoritesPage'
 
 function App() {
 	return (
@@ -12,8 +11,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<LoginPage />} />
 					<Route path='/main' element={<MainPage />} />
-					<Route path='/find' element={<FindPage />} />
-					<Route path='/favorites' element={<FavoritesPage />} />
+					<Route path='/favorites' element={<FavoriteQueriesPage />} />
 				</Routes>
 			</div>
 		</Router>
